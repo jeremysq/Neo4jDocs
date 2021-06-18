@@ -1,1 +1,2 @@
-data.tsv
+datasets/*.csv
+datasets/*.tsv
