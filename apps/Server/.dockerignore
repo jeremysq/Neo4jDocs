@@ -4,3 +4,4 @@ run.bat
 run.sh
 cleanup.bat
 cleanup.sh
+logs/
