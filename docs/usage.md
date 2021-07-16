@@ -32,4 +32,4 @@
   2. Relationships
   3. Weights
 
-  Weights are an array-like data structure stored as doubles. Estimating memory can be done to ensure that certain algorithms by using the <code>.estimate</code> function when conducting a Cypher query that supports this mode. Examples of these Cypher queries can be found [here](/cypher/memory).
+  Weights are an array-like data structure stored as doubles. Estimating memory can be done to ensure that certain algorithms by using the <code>.estimate</code> function when conducting a Cypher query that supports this mode. Examples of these Cypher queries can be found [here](https://github.com/jeremysq/Neo4jDocs/tree/master/cypher/memory).
