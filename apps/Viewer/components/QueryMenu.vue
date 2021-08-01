@@ -2,31 +2,40 @@
   <v-card
     outlined
   >
-    <v-card-title>
-      Query Menu Controls
-    </v-card-title>
+    <v-row
+      class="mx-2 mt-2"
+    >
+      <v-col
+        class="ml-n5 mt-n5"
+      >
+        <v-card-title>
+          Query Menu Controls
+        </v-card-title>
+      </v-col>
+      <v-col>
+        <v-select
+          v-model="choice"
+          :items="choices"
+          label="Query Options"
+          outlined
+        />
+      </v-col>
+    </v-row>
     <v-row
       class="mb-2 ml-2"
     >
-      <v-col
-        cols="9"
-      >
-        <v-row>
-          <v-col
-            v-for="keyword in keywords"
-            :key="keyword.name"
-            class="mx-n2 my-n2"
-          >
-            <v-btn
-              small
-              outlined
-              @click="addKeyword(keyword.value)"
-            >
-              {{ keyword.name }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-col>
+      <Presets
+        v-if="choice == 'Presets'"
+        @overwriteQuery="overwriteQuery($event)"
+      />
+      <Keywords
+        v-if="choice == 'Cypher Keywords'"
+        @addKeyword="addKeyword($event)"
+      />
+      <GDSFunctions
+        v-if="choice == 'Graph Data Science Functions'"
+        @addKeyword="addKeyword($event)"
+      />
       <v-col>
         <v-btn
           v-if="isInitialize"
@@ -43,7 +52,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import Keywords from './Keywords.vue'
+import Presets from './Presets.vue'
+import GDSFunctions from './GDSFunctions.vue'
 export default {
+  components: {
+    Keywords,
+    Presets,
+    GDSFunctions
+  },
   props: {
     viz: {
       type: Object,
@@ -56,29 +73,8 @@ export default {
   },
   data () {
     return {
-      keywords: [
-        { name: 'Match', value: 'MATCH' },
-        { name: 'Create', value: 'CREATE' },
-        { name: 'Set', value: 'SET' },
-        { name: 'Delete', value: 'DELETE' },
-        { name: 'Remove', value: 'REMOVE' },
-        { name: 'Merge', value: 'MERGE' },
-        { name: 'Where', value: 'WHERE' },
-        { name: 'And', value: 'AND' },
-        { name: 'Or', value: 'OR' },
-        { name: 'Not', value: 'NOT' },
-        { name: 'In', value: 'IN' },
-        { name: 'As', value: 'AS' },
-        { name: 'Return', value: 'RETURN' },
-        { name: 'Limit', value: 'LIMIT' },
-        { name: 'Unwind', value: 'UNWIND' },
-        { name: 'Distinct', value: 'DISTINCT' },
-        { name: 'Starts With', value: 'STARTS WITH' },
-        { name: 'Detach Delete', value: 'DETACH DELETE' },
-        { name: 'Order By', value: 'ORDER BY' },
-        { name: 'Load CSV', value: 'LOAD CSV FROM' },
-        { name: 'Load CSV with Headers', value: 'LOAD CSV WITH HEADERS FROM' }
-      ]
+      choice: 'Presets',
+      choices: ['Presets', 'Cypher Keywords', 'Graph Data Science Functions']
     }
   },
   computed: {
@@ -91,8 +87,12 @@ export default {
       this.viz.renderWithCypher(this.query)
     },
     addKeyword (string) {
-      console.log(string)
+      // console.log(string)
       this.$emit('addKeyword', string)
+    },
+    overwriteQuery (string) {
+      // console.log(string)
+      this.$emit('overwriteQuery', string)
     }
   }
 }

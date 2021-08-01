@@ -11,10 +11,11 @@ This repository is split into two portions, an overview on the Graph Data Scienc
 
 ## Sections
 
-### Graph Data Science Library (Current Work In Progress)
+### Graph Data Science Library
 
 1. [Usage](https://github.com/jeremysq/Neo4jDocs/blob/master/docs/usage.md)
 2. [Graph Algorithms](https://github.com/jeremysq/Neo4jDocs/blob/master/docs/algorithms.md)
+3. [Algorithm Syntax](https://github.com/jeremysq/Neo4jDocs/blob/master/cypher/gds/README.md)
 
 ### Application
 

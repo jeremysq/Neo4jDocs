@@ -1,7 +1,8 @@
-FROM neo4j:4.1.10-enterprise
+FROM neo4j:4.2.5-enterprise
 
 ENV NEO4J_AUTH=none
 ENV NEO4J_ACCEPT_LICENSE_AGREEMENT='yes'
+ENV NEO4J_dbms_logs_debug_level=DEBUG
 ENV NEO4JLABS_PLUGINS='["graph-data-science", "apoc"]'
 ENV NEO4J_apoc_import_file_enabled=true
 ENV NEO4J_apoc_export_file_enabled=true

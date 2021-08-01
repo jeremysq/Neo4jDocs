@@ -35,6 +35,7 @@
               :viz="viz"
               :query="query"
               @addKeyword="changeQuery($event)"
+              @overwriteQuery="overwriteQuery($event)"
             />
           </v-col>
           <v-col
@@ -139,7 +140,8 @@ export default {
             community: 'community',
             title_properties: [
               'name',
-              'pagerank'
+              'pagerank',
+              'community'
             ]
           }
         },
@@ -161,6 +163,9 @@ export default {
     },
     changeQuery (string) {
       this.query = this.query + string
+    },
+    overwriteQuery (string) {
+      this.query = string
     },
     neoError (err) {
       console.log(err.error_msg)
